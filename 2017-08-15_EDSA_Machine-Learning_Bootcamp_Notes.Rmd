@@ -1,0 +1,13 @@
+---
+title: "ESDA Machine Learning Bootcamp"
+author: "Georg Maubach"
+date: "16 August 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+***
+
