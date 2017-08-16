@@ -11,3 +11,51 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ***
 
+# Regression  
+
+## Ordinary Least Squares (OLS)  
+
+```{r}
+library(car)
+
+# Careers in the United States
+data("Duncan")
+head(Duncan)
+sapply(Duncan, unique)
+
+```
+
+Models are build using the following notation:  
+
+- model name
+- target variable(s)
+- tilde
+- input variable(s)
+- dataset where to find input and target variable(s)
+
+model <- lm(temperature ~ . , dataset) means that all variables are taken
+without the target variable "temperature".
+
+```{r}
+model = lm(prestige ~ education, Duncan)
+plot(prestige ~ education, Duncan)
+
+f <- function(x) {
+  predict(
+    model,
+    data.frame(education = x)
+  )
+}
+
+plot(f, from = 0, to = 100, add = TRUE)
+
+new_data <- data.frame(education =c(10, 50, 90))
+# colums must match up with the columns in the model
+new_data
+predict(model, new_data)
+
+```
+
+
+
+
