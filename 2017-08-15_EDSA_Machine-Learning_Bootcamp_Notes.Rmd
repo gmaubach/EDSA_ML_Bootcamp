@@ -49,13 +49,77 @@ f <- function(x) {
 
 plot(f, from = 0, to = 100, add = TRUE)
 
-new_data <- data.frame(education =c(10, 50, 90))
+new_data <- data.frame(education = c(10, 50, 90))
 # colums must match up with the columns in the model
 new_data
 predict(model, new_data)
 
 ```
 
+## Generalized Linear Models (GLM)  
 
+```{r}
+data("airquality")
+head(airquality)
 
+plot(Ozone~Wind, airquality)
+model_1 <- lm(Ozone ~ Wind, airquality)
+f_1 <- function(x) {
+  predict(
+    model_1,
+    data.frame(Wind = x)
+  )
+}
+
+# plot function f_1 gets its parameter x from the expression 
+# "from = 0, to = 25"
+plot(f_1, from = 0, to = 25, add = TRUE)
+
+model_2 <- glm(Ozone ~ Wind, "poisson", airquality)
+f_2 <- function(x) {
+  predict(
+    model_2,
+    data.frame(Wind = x),
+    type = "response"
+  )
+}
+
+plot(f_2, from = 0, to = 25, add = TRUE, col = "red")
+```
+
+## Polynomial Regression  
+
+```{r}
+poly(1:4, raw = TRUE, simple = TRUE)
+model_3 <- lm(Ozone ~ poly(Wind, 4), airquality)
+f_3 <- function(x) {
+  predict,
+  model_3,
+  data.frame(Wind = x)
+}
+
+plot(f_3, from = 0, to = 25, add = TRUE)
+```
+
+## Neural Networks
+
+```{r}
+# Package "nnet"
+# - package can handle only one hidden layer
+# - uses only the logistic (sigmoid) function
+
+# install.packages("nnet", dependencies = TRUE)
+
+library(nnet) 
+model_4 <- nnet(Ozone ~ Wind, airquality, size = 4, linout = TRUE)
+
+f4 <- function(x) {
+  predict(
+    model,
+    data.frame(education = x)
+  )
+}
+
+plot(f4, from = 0, to = 25, add = TRUE, col = "orange")
+```
 
