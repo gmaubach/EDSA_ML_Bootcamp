@@ -11,6 +11,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ***
 
+Day 1: 16.08.2017
+
 # Regression  
 
 ## Ordinary Least Squares (OLS)  
@@ -93,9 +95,10 @@ plot(f_2, from = 0, to = 25, add = TRUE, col = "red")
 poly(1:4, raw = TRUE, simple = TRUE)
 model_3 <- lm(Ozone ~ poly(Wind, 4), airquality)
 f_3 <- function(x) {
-  predict,
-  model_3,
-  data.frame(Wind = x)
+  predict(
+    model_3,
+    data.frame(Wind = x)
+  )
 }
 
 plot(f_3, from = 0, to = 25, add = TRUE)
@@ -115,11 +118,54 @@ model_4 <- nnet(Ozone ~ Wind, airquality, size = 4, linout = TRUE)
 
 f4 <- function(x) {
   predict(
-    model,
-    data.frame(education = x)
+    model_4,
+    data.frame(Wind = x)
   )
 }
 
 plot(f4, from = 0, to = 25, add = TRUE, col = "orange")
-```
+ ```
+
+## Excercise 1
+
+Use datasets.R
+
+2017-08-16_Excercise_1.R
+
+Use ex1.R for soluton
+
+## Excercise 2: Regression
+
+Use datasets.R
+
+2017-08-16_Excercise_2.R
+
+Use regression.R for soluiton
+
+# Validation  
+
+**Please note**  
+Make always sure that you randomize the complete dataset before splitting it
+into training, evaluation and test data cause you can never be sure that the
+data was collected or delivered randomly. Normally the data collectors sort the
+data to make checks.  
+
+## Excercise 3: Model Validation / Selection Excercises
+
+Use datasets.R
+Use selection.R for solution
+
+# Regularisation
+
+Use regularisation.R
+
+# How To Split Your Data?  
+
+Answer the 3 questions from the slides.
+
+Use Learning Graphs in your work to split data.
+
+
+
+
 
